@@ -13,6 +13,7 @@ Santiago Sandoval
 
 %%
 
+a: a l s r;
 a: l s r;
 s: N;
 s: s c N;
@@ -24,13 +25,13 @@ c: C
 
 main() {
 	if(yyparse() == 0) {
-		printf("Palabra generable por GLC \n");
+		printf("\nPalabra generable por GLC \n");
 		return 0;
 	}
 }
 
 char *s;
 yyerror( char *s ) { 
-	printf("Palabra no generable por GLC \n"); 
+	printf("\nPalabra no generable por GLC \n"); 
 	return 1;
 }

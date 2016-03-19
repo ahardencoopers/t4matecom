@@ -11,10 +11,11 @@ Santiago Sandoval
 %}
 %%
 
-\{	{return (L);}
-\}	{return (R);}
-[a-zA-Z0-9]*	{return (N);}
-,	{return (C);}
+\<state	{printf("L"); return (L); }
+\<\/state>	{printf("R"); return (R);}
+name=\"[a-zA-Z0-9]*\"	{printf("N"); return (N);}
+. ;
+\n ;
 %%
 
 /*
