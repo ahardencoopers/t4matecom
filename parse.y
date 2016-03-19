@@ -9,14 +9,18 @@ Santiago Sandoval
 #include <stdio.h>
 %}
 
+%union {
+	char *string;
+}
+
 %token L R N C
 
 %%
 
 a: a l s r;
 a: l s r;
-s: N;
 s: s c N;
+s: N { printf("%s\n", yylval); };
 l: L;
 r: R;
 c: C
