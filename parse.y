@@ -9,12 +9,15 @@ Santiago Sandoval
 #include <stdio.h>
 %}
 
-%token L
-%token R
+%token L R N
 
 %%
 
-s: L R;
+a: l s r;
+s: s N;
+s: N;
+l: L
+r: R
 
 %%
 

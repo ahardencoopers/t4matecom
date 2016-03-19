@@ -28,4 +28,3 @@ clean:
 	rm *tab*
 	rm lex*
 	rm main
-	

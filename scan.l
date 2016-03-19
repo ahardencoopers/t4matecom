@@ -10,10 +10,12 @@ Santiago Sandoval
 #include "parse.tab.h"
 %}
 %%
+
 \{ {return (L);}
 \} {return (R);}
-[^\{\}] ;
+[a-zA-Z0-9]* {return (N);}
 %%
+
 /*
 Tokens utilzados por el parser
 S -> token inicial (implicito)
