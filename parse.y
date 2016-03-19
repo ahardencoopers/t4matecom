@@ -13,6 +13,7 @@ Santiago Sandoval
 
 %%
 
+a: a l s r;
 a: l s r;
 s: s c N;
 s: N;
