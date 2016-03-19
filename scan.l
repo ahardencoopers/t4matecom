@@ -13,9 +13,8 @@ char *temp;
 %}
 %%
 
-
 \<\/state\>\n\t\t\<state {
-	printf(", ");
+	return (C);
 }
 
 name=\"[a-zA-Z0-9]*\"	{
@@ -24,6 +23,15 @@ name=\"[a-zA-Z0-9]*\"	{
 	yylval.string = strdup(temp);
 	return (N);
 }
+
+\<initial\/\> {
+	return (I);
+}
+
+\<final\/\> {
+	return (F);
+}
+
 . ;
 \n ;
 %%

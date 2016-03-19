@@ -8,24 +8,24 @@ Santiago Sandoval
 %{
 #include <stdio.h>
 #define YYSTYPE char *
+char finales[1024];
 %}
 
 %union {
 	char *string;
 }
 
-%token L R N C
+%token N I F C
 
 %%
 
-a: a s ;
-a: s ;
-s: s c N;
-s: N { printf("%s", yylval); };
-c: C ;
+s: s s ;
+s: N i f C{ printf("%s, ", yylval); };
+s: N i f { printf("%s", yylval); };
+i: %empty | I { finales[0] = 'a'; };
+f: %empty | F { printf("f"); };
 
 %%
-
 main() { 
 	printf("ESTADOS: {");
 	if(yyparse() == 0) {
