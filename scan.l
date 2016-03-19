@@ -11,9 +11,10 @@ Santiago Sandoval
 %}
 %%
 
-\{ {return (L);}
-\} {return (R);}
-[a-zA-Z0-9]* {return (N);}
+\{	{return (L);}
+\}	{return (R);}
+[a-zA-Z0-9]*	{return (N);}
+,	{return (C);}
 %%
 
 /*
