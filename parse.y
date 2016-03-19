@@ -22,7 +22,7 @@ a: a s ;
 a: s ;
 s: s c N;
 s: N { printf("%s", yylval); };
-c: C { printf(","); };
+c: C ;
 
 %%
 
