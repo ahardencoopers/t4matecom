@@ -9,6 +9,7 @@ Santiago Sandoval
 %{
 #include <string.h>
 #include "parse.tab.h"
+char *temp;
 %}
 %%
 
@@ -21,7 +22,9 @@ Santiago Sandoval
 }
 
 name=\"[a-zA-Z0-9]*\"	{
-	yylval.string = strdup(yytext);
+	temp = yytext+6;
+	temp[strlen(temp)-1] = '\0';
+	yylval.string = strdup(temp);
 	return (N);
 }
 . ;
