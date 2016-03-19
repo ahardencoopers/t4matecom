@@ -7,8 +7,11 @@ Santiago Sandoval
 
 %{
 #include <stdio.h>
+#include <stdlib.h>
+#include "Estado.h" 
 #define YYSTYPE char *
-char finales[1024];
+char inicial[1024];
+
 %}
 
 %union {
@@ -22,14 +25,15 @@ char finales[1024];
 s: s s ;
 s: N i f C{ printf("%s, ", yylval); };
 s: N i f { printf("%s", yylval); };
-i: %empty | I { finales[0] = 'a'; };
-f: %empty | F { printf("f"); };
+i: %empty | I { strcpy(inicial, yylval); };
+f: %empty | F { ; };
 
 %%
 main() { 
 	printf("ESTADOS: {");
 	if(yyparse() == 0) {
-		printf("}");
+		printf("}\n");
+		printf("INICIAL = %s", inicial);
 		printf("\nPalabra generable por GLC \n");
 		return 0;
 	}

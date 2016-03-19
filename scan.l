@@ -25,10 +25,12 @@ name=\"[a-zA-Z0-9]*\"	{
 }
 
 \<initial\/\> {
+	yylval.string = strdup(temp);
 	return (I);
 }
 
 \<final\/\> {
+	yylval.string = strdup(temp);
 	return (F);
 }
 
