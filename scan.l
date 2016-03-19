@@ -7,6 +7,7 @@ Santiago Sandoval
 
 
 %{
+#include <string.h>
 #include "parse.tab.h"
 %}
 %%

@@ -7,6 +7,7 @@ Santiago Sandoval
 
 %{
 #include <stdio.h>
+#define YYSTYPE char *
 %}
 
 %union {
