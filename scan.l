@@ -13,12 +13,9 @@ char *temp;
 %}
 %%
 
-\<state	{
-	return (L); 
-}
 
-\<\/state>	{
-	return (R);
+\<\/state\>\n\t\t\<state {
+	printf(", ");
 }
 
 name=\"[a-zA-Z0-9]*\"	{

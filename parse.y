@@ -18,18 +18,16 @@ Santiago Sandoval
 
 %%
 
-a: a l s r ;
-a: l s r ;
+a: a s ;
+a: s ;
 s: s c N;
-s: N { printf("%s ", yylval); };
-l: L;
-r: R;
-c: C
+s: N { printf("%s", yylval); };
+c: C { printf(","); };
 
 %%
 
 main() { 
-	printf("ESTADOS: { ");
+	printf("ESTADOS: {");
 	if(yyparse() == 0) {
 		printf("}");
 		printf("\nPalabra generable por GLC \n");
