@@ -1,4 +1,6 @@
 Tarea 4 Matematicas Computacionales
+Alberto Harden Cooper a00811931
+Santiago Sandoval
 
 Escribir parser (Bison) y scanner (construir con flex) para convertir archivo de XML producido por JFLAP a 
 definicion a quintuplo (K, Sig, F, s,f) donde:
