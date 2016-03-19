@@ -1,4 +1,5 @@
 Tarea 4 Matematicas Computacionales
+
 Escribir parser (Bison) y scanner (construir con flex) para convertir archivo de XML producido por JFLAP a 
 definicion a quintuplo (K, Sig, F, s,f) donde:
 K = Conjunto de estados del automata.
