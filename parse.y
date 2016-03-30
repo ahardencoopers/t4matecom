@@ -9,14 +9,19 @@ Santiago Sandoval
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Transicion.h"
 #define YYSTYPE char *
 char inicial[1024];
 char estados[1024][1024];
 char finales[1024][1024];
+char alfabeto[1024];
+struct Transicion transiciones[1024];
 int cantEstados = 0;
 int cantFinales = 0;
+int cantTrans = 0;
+int cantAlfabeto = 0;
+int alfabetoImpreso = 0;
 int i;
-int r = 0;
 
 %}
 
@@ -24,7 +29,7 @@ int r = 0;
 	char *string;
 }
 
-%token N I F C M T R
+%token N I F C M O R
 
 %%
 
@@ -52,18 +57,26 @@ f: %empty | F {
 	strcpy(finales[cantFinales], yylval);
 	cantFinales++; 
 };
-t: M T R t {
-	//printf("MTRt %s ", yylval);
+t: m o r t ; 
+t: m o r ;
+m: M {
+	strcpy(transiciones[cantTrans].fuente, estados[atoi(yylval)]);
 };
-t: M T R {
-	//printf("MTR %s", yylval);
+o: O {
+	strcpy(transiciones[cantTrans].destino, estados[atoi(yylval)]);
+};
+r: R {
+	strcpy(transiciones[cantTrans].consume, yylval);
+	alfabeto[yylval[0]] = yylval[0];
+	cantAlfabeto++;
+	cantTrans++;
 };
 
 %%
 main() { 
 	printf("--------------------------- QUÍNTUPLO --------------------------------\n");
 	if(yyparse() == 0) {
-		printf("ESTADOS: {");
+		printf("ESTADOS= {");
 			for(i=0; i<cantEstados; i++) {
 				if(i == cantEstados-1) {
 					printf("%s", estados[i]);
@@ -79,6 +92,27 @@ main() {
 				printf("%s", finales[i]);
 			} else {
 				printf("%s, ", finales[i]);
+			}
+		}
+		printf("}\n");
+		printf("TRANSICIONES= {");
+		for(i=0; i<cantTrans; i++) {
+			if(i == cantTrans-1) {
+				printf("(%s, %s, %s)", transiciones[i].fuente, transiciones[i].consume, transiciones[i].destino);
+			} else {
+				printf("(%s, %s, %s), ",transiciones[i].fuente, transiciones[i].consume, transiciones[i].destino);
+			}
+		}
+		printf("}\n");
+		printf("ALFABETO= {");
+		for(i=0; i<1024; i++) {
+			if(alfabeto[i] != 0) {
+				if(alfabetoImpreso == cantAlfabeto-1) {
+					printf("%c", alfabeto[i]);
+				} else {
+					printf("%c, ", alfabeto[i]);
+				}
+				alfabetoImpreso++;
 			}
 		}
 		printf("}");

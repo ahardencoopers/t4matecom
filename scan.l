@@ -58,8 +58,8 @@ name=\"[a-zA-Z0-9]*\" {
 	temp = yytext+4;
 	temp[strlen(temp)-1] = '\0';
 	yylval.string = strdup(temp);
-	//printf("scan:T ");
-	return (T);
+	//printf("scan:O ");
+	return (O);
 }
 
 
