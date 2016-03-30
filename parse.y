@@ -35,7 +35,6 @@ int i;
 
 a: s t ;
 t: %empty ;
-s: %empty ;
 s: s s | %empty ;
 s: N i f C {
 	//printf("NifC %s ", yylval);
@@ -69,8 +68,10 @@ o: O {
 };
 r: R {
 	strcpy(transiciones[cantTrans].consume, yylval);
-	alfabeto[yylval[0]] = yylval[0];
-	cantAlfabeto++;
+	if(alfabeto[yylval[0]] != yylval[0]) {
+		cantAlfabeto++;
+		alfabeto[yylval[0]] = yylval[0];
+	}
 	cantTrans++;
 };
 
