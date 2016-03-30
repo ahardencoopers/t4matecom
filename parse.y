@@ -9,7 +9,6 @@ Santiago Sandoval
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Estado.h" 
 #define YYSTYPE char *
 char inicial[1024];
 char finales[1024][1024];
@@ -26,7 +25,7 @@ int i;
 
 %%
 
-s: s s ;
+s: s s | %empty ;
 s: N i f C{ printf("%s, ", yylval); };
 s: N i f { printf("%s", yylval); };
 i: %empty | I { strcpy(inicial, yylval); };
