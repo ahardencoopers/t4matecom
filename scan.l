@@ -10,28 +10,65 @@ Santiago Sandoval
 #include <string.h>
 #include "parse.tab.h"
 char *temp;
+char *nombreEstado;
 %}
 %%
 
 \<\/state\>\n\t\t\<state {
+	//printf("scan:C ");
 	return (C);
 }
 
-name=\"[a-zA-Z0-9]*\"	{
+
+\<\/state\>\n\t\t\<!-- {
+	//printf("scan:C ");
+	return (C);
+}
+
+name=\"[a-zA-Z0-9]*\" {
 	temp = yytext+6;
 	temp[strlen(temp)-1] = '\0';
 	yylval.string = strdup(temp);
+	//printf("scan:N ");
 	return (N);
 }
 
 \<initial\/\> {
 	yylval.string = strdup(temp);
+	//printf("scan:I ");
 	return (I);
 }
 
 \<final\/\> {
 	yylval.string = strdup(temp);
+	//printf("scan:F ");
 	return (F);
+}
+
+\<from\>[a-zA-Z0-9]*. {
+	temp = yytext+6;
+	temp[strlen(temp)-1] = '\0';
+	yylval.string = strdup(temp);
+	//printf("scan:M ");
+	return (M);
+}
+
+
+\<to\>[a-zA-Z0-9]*. {
+	temp = yytext+4;
+	temp[strlen(temp)-1] = '\0';
+	yylval.string = strdup(temp);
+	//printf("scan:T ");
+	return (T);
+}
+
+
+\<read\>[a-zA-Z0-9]*. {
+	temp = yytext+6;
+	temp[strlen(temp)-1] = '\0';
+	yylval.string = strdup(temp);
+	//printf("scan:R ");
+	return (R);
 }
 
 . ;
