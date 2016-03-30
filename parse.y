@@ -33,7 +33,8 @@ int i;
 
 %%
 
-a: s t
+a: s t ;
+t: %empty ;
 s: s s | %empty ;
 s: N i f C {
 	//printf("NifC %s ", yylval);

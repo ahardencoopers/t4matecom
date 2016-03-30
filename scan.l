@@ -15,14 +15,18 @@ char *nombreEstado;
 %%
 
 \<\/state\>\n\t\t\<state {
-	//printf("scan:C ");
+	//printf("scan:Cstate ");
 	return (C);
 }
 
 
 \<\/state\>\n\t\t\<!-- {
-	//printf("scan:C ");
+	//printf("scan:Ctrans ");
 	return (C);
+}
+
+\<\/state\>\n\t\<\/automaton {
+	//printf("scan:Cauto ");
 }
 
 name=\"[a-zA-Z0-9]*\" {
